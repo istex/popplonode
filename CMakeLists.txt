@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 14)
 # Name of the project (will be the name of the plugin)
 project(popplonode)
-# Build a shared library named after the project from the files in `src/`
+# Build a shared library named after the project from the files in project
 file(GLOB SOURCE_FILES "*.cpp" "*.h")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 include_directories(${CMAKE_JS_INC})
