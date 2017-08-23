@@ -1,0 +1,17 @@
+{
+  "name": "popplonode",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "install": "cmake-js compile",
+    "rebuild": "cmake-js rebuild"
+  },
+  "dependencies": {
+    "bindings": "^1.3.0",
+    "cmake-js": "^3.5.0",
+    "nan": "^2.6.2"
+  }
+}
