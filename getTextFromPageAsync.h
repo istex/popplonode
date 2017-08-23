@@ -6,7 +6,7 @@
 
 class GetTextFromPageAsync : public Nan::AsyncWorker {
 public:
-  GetTextFromPageAsync(Nan::Callback* callback, Popplonode* popplonode);
+  GetTextFromPageAsync(Nan::Callback* callback, Popplonode* popplonode, double pageNumber);
   ~GetTextFromPageAsync();
   void Execute();
   void HandleOKCallback();

@@ -3,7 +3,7 @@
 using namespace std;
 using namespace v8;
 
-GetTextFromPageAsync::GetTextFromPageAsync(Nan::Callback* callback, Popplonode* popplonode)
+GetTextFromPageAsync::GetTextFromPageAsync(Nan::Callback* callback, Popplonode* popplonode, double pageNumber)
     : Nan::AsyncWorker(callback), popplonode(popplonode), pageNumber(pageNumber) {}
 GetTextFromPageAsync::~GetTextFromPageAsync() {}
 void GetTextFromPageAsync::Execute() { currentPage = popplonode->doc->create_page(pageNumber); }
