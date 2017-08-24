@@ -66,6 +66,9 @@ void Popplonode::getMetadata(const Nan::FunctionCallbackInfo<v8::Value>& info) {
         Nan::New<String>(popplonode->doc->info_key(infoKey).to_latin1().c_str()).ToLocalChecked();
     metadata->Set(infoProp, infoValue);
   });
+  Local<String> nbPageProp = Nan::New<String>("TotalNbPages").ToLocalChecked();
+  Local<Number> nbPageValue = Nan::New<Number>(popplonode->doc->pages());
+  metadata->Set(nbPageProp, nbPageValue);
   info.GetReturnValue().Set(metadata);
 }
 
