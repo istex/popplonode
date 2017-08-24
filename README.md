@@ -8,7 +8,7 @@ This version has been tested only on Ubuntu 16.04 and 14.04
 
 **Debian/Ubuntu**
 ```shell
-sudo apt-get install cmake g++libpoppler-cpp-dev
+sudo apt-get install cmake g++ libpoppler-cpp-dev
 ```
 
 ## Install
@@ -19,6 +19,8 @@ npm install git+https://github.com/istex/popplonode.git[#<commit-ish> | #semver:
 ## Usage
 ```javascript
 const Popplonode = require('popplonode');
+
+const poppl = new Popplonode();
 
 // We load the PDF file into poppl
 poppl.load('path/to/my/file.pdf'); 
