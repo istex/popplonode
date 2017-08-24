@@ -12,5 +12,5 @@ addons:
     packages:
       - cmake
       - g++-4.8
-      - libpoppler-dev
+      - libpoppler-cpp-dev
   
