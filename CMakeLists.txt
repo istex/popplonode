@@ -7,7 +7,7 @@ file(GLOB SOURCE_FILES "*.cpp" "*.h")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 include_directories(${CMAKE_JS_INC})
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/extra-cmake-modules/find-modules")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake-modules/find-modules")
 find_package(Poppler REQUIRED)
 include_directories(${Poppler_INCLUDE_DIRS})
 

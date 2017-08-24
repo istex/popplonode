@@ -78,4 +78,4 @@ void Popplonode::getTextFromPage(const Nan::FunctionCallbackInfo<v8::Value>& inf
   Nan::AsyncQueueWorker(new GetTextFromPageAsync(callback, popplonode, pageNumber));
 }
 
-NODE_MODULE(popplernodetest, Popplonode::Init);
+NODE_MODULE(popplonode, Popplonode::Init);

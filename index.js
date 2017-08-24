@@ -1,2 +1,2 @@
-const Popplonode = require('bindings')('popplonode.node').Popplonode;
+const Popplonode = require('bindings')('popplonode').Popplonode;
 module.exports = Popplonode;
