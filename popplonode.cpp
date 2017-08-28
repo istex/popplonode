@@ -68,6 +68,13 @@ void Popplonode::getMetadata(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   });
   Local<String> nbPageProp = Nan::New<String>("TotalNbPages").ToLocalChecked();
   Local<Number> nbPageValue = Nan::New<Number>(popplonode->doc->pages());
+  Local<String> numVersionProp = Nan::New<String>("PDFFormatVersion").ToLocalChecked();
+  int major = 0, minor = 0;
+  popplonode->doc->get_pdf_version(&major, &minor);
+  string pdfVersion = std::to_string(major) + "." + std::to_string(minor);
+  Local<String> numVersionValue = Nan::New<String>(pdfVersion).ToLocalChecked();
+  metadata->Set(nbPageProp, nbPageValue);
+  metadata->Set(numVersionProp, numVersionValue);
   metadata->Set(nbPageProp, nbPageValue);
   info.GetReturnValue().Set(metadata);
 }

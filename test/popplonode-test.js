@@ -31,6 +31,9 @@ describe('popplonode', function () {
     expect(metadata.Title).to.be.a('string');
     expect(metadata).to.have.own.property('TotalNbPages');
     expect(metadata.TotalNbPages).to.be.a('number');
+    expect(metadata).to.have.own.property('PDFFormatVersion');
+    expect(metadata.PDFFormatVersion).to.be.a('string');
+    expect(metadata.PDFFormatVersion).to.be.equal('1.4');
   });
 
   it('should get the text from page of pdf file', function (done) {
