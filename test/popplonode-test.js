@@ -1,10 +1,17 @@
 const Popplonode = require('../index.js');
 const expect = require('chai').expect;
+const intercept = require('intercept-stdout');
+const spawn = require('child_process').spawn;
+const os = require('os');
 
 describe('popplonode', function () {
   it('should construct an new Popplonode object', function () {
     const poppl = new Popplonode();
     expect(poppl).to.be.instanceOf(Popplonode);
+    expect(poppl).to.have.own.property('debug');
+    expect(poppl.debug).to.be.false;
+    poppl.debug = true;
+    expect(poppl.debug).to.be.true;
   });
 
   it('should load a pdf file', function () {
@@ -44,5 +51,15 @@ describe('popplonode', function () {
       expect(content).to.be.a('string');
       done();
     });
+  });
+
+  it('should get the text from page of pdf file in debug mode', function (done) {
+    const debug = spawn('node', ['test/data/debug.js']);
+    debug.stderr.on('data', (data) => {
+      const warning = data.toString();
+      expect(warning).to.be.a('string');
+      expect(warning).to.equal(`poppler/error: Invalid Font Weight${os.EOL}`);
+    });
+    debug.on('close', () => done());
   });
 });
