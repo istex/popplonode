@@ -1,6 +1,5 @@
 const Popplonode = require('../index.js');
 const expect = require('chai').expect;
-const intercept = require('intercept-stdout');
 const spawn = require('child_process').spawn;
 const os = require('os');
 
