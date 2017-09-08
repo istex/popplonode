@@ -8,7 +8,9 @@
 using namespace std;
 using namespace v8;
 
-Popplonode::Popplonode() {}
+Popplonode::Popplonode(bool debug = false) : _debug(debug) {
+  poppler::set_debug_error_function([](const std::string& msg, void*) { return; }, nullptr);
+}
 Popplonode::~Popplonode() {}
 
 Nan::Persistent<v8::Function>& Popplonode::constructor() {
@@ -25,9 +27,9 @@ NAN_MODULE_INIT(Popplonode::Init) {
   Nan::SetPrototypeMethod(tpl, "getMetadata", getMetadata);
   Nan::SetPrototypeMethod(tpl, "getTextFromPage", getTextFromPage);
 
-  // v8::Local<v8::ObjectTemplate> instTpl = tpl->InstanceTemplate();
-  // Nan::SetAccessor(itpl, Nan::New<v8::String>("debug").ToLocalChecked(), Popplonode::getDebug,
-  // Popplonode::setDebug);
+  Local<ObjectTemplate> instTpl = tpl->InstanceTemplate();
+  Nan::SetAccessor(instTpl, Nan::New<v8::String>("debug").ToLocalChecked(), Popplonode::getDebug,
+                   Popplonode::setDebug);
 
   constructor().Reset(Nan::GetFunction(tpl).ToLocalChecked());
   Nan::Set(target, Nan::New("Popplonode").ToLocalChecked(), tpl->GetFunction());
@@ -40,8 +42,8 @@ NAN_METHOD(Popplonode::New) {
     info.GetReturnValue().Set(info.This());
   } else {
     const int argc = 1;
-    v8::Local<v8::Value> argv[argc] = {info[0]};
-    v8::Local<v8::Function> cons = Nan::New(constructor());
+    Local<Value> argv[argc] = {info[0]};
+    Local<Function> cons = Nan::New(constructor());
     info.GetReturnValue().Set(cons->NewInstance(argc, argv));
   }
 }
@@ -89,6 +91,25 @@ NAN_METHOD(Popplonode::getTextFromPage) {
   Nan::Callback* callback = new Nan::Callback(info[1].As<Function>());
   Popplonode* popplonode = Nan::ObjectWrap::Unwrap<Popplonode>(info.Holder());
   Nan::AsyncQueueWorker(new GetTextFromPageAsync(callback, popplonode, pageNumber));
+}
+
+NAN_GETTER(Popplonode::getDebug) {
+  Isolate* isolate = info.GetIsolate();
+  Popplonode* obj = ObjectWrap::Unwrap<Popplonode>(info.This());
+  info.GetReturnValue().Set(v8::Boolean::New(isolate, obj->_debug));
+}
+
+NAN_SETTER(Popplonode::setDebug) {
+  Popplonode* obj = ObjectWrap::Unwrap<Popplonode>(info.This());
+  bool input = value->BooleanValue();
+  if (input) {
+    poppler::set_debug_error_function([](const std::string& msg, void*) { 
+      std::cerr << "poppler/" << msg << std::endl;
+    }, nullptr);
+  } else {
+    poppler::set_debug_error_function([](const std::string& msg, void*) { return; }, nullptr);
+  }
+  obj->_debug = value->BooleanValue();
 }
 
 void InitPopplonode(v8::Local<v8::Object> exports) { Popplonode::Init(exports); }

@@ -1,9 +1,10 @@
 #ifndef POPPLONODE_H
 #define POPPLONODE_H
 
-#include <nan.h>
 #include <cpp/poppler-document.h>
+#include <cpp/poppler-global.h>
 #include <cpp/poppler-page.h>
+#include <nan.h>
 
 class Popplonode : public Nan::ObjectWrap {
 public:
@@ -11,13 +12,19 @@ public:
   poppler::document* doc;
 
 private:
-  explicit Popplonode(); 
+  explicit Popplonode(bool debug); 
   ~Popplonode();
+  static inline Nan::Persistent<v8::Function>& constructor();
+
   static NAN_METHOD(New);
   static NAN_METHOD(load);
   static NAN_METHOD(getMetadata);
   static NAN_METHOD(getTextFromPage);
-  static inline Nan::Persistent<v8::Function>& constructor();
+
+  static NAN_GETTER(getDebug);
+  static NAN_SETTER(setDebug);
+  
+  bool _debug;
 };
 
 #endif
