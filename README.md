@@ -35,11 +35,11 @@ poppl.getTextFromPage(0, (error, content) => {
 
 ## API
 
-### Popplonode.load(string)
+### load(string)
 arguments: 
 - **string** path to your pdf file
 
-### Popplonode.getMetadata()
+### getMetadata()
 returns: 
 - **object** returns an object that contains all of the pdf's metadata
 ```js
@@ -56,7 +56,7 @@ returns:
 }
 ```
 
-### Popplonode.getTextFromPage(number, function)
+### getTextFromPage(number, function)
 arguments : 
 - **number** page number (first page start at zero)
 - **function** callback who return page text
