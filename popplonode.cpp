@@ -16,8 +16,8 @@ Nan::Persistent<v8::Function>& Popplonode::constructor() {
   return my_constructor;
 }
 
-void Popplonode::Init(v8::Local<v8::Object> exports) {
-  Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(New);
+NAN_MODULE_INIT(Popplonode::Init) {
+  Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(Popplonode::New);
   tpl->SetClassName(Nan::New("Popplonode").ToLocalChecked());
   tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
@@ -25,11 +25,15 @@ void Popplonode::Init(v8::Local<v8::Object> exports) {
   Nan::SetPrototypeMethod(tpl, "getMetadata", getMetadata);
   Nan::SetPrototypeMethod(tpl, "getTextFromPage", getTextFromPage);
 
+  // v8::Local<v8::ObjectTemplate> instTpl = tpl->InstanceTemplate();
+  // Nan::SetAccessor(itpl, Nan::New<v8::String>("debug").ToLocalChecked(), Popplonode::getDebug,
+  // Popplonode::setDebug);
+
   constructor().Reset(Nan::GetFunction(tpl).ToLocalChecked());
-  exports->Set(Nan::New("Popplonode").ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked());
+  Nan::Set(target, Nan::New("Popplonode").ToLocalChecked(), tpl->GetFunction());
 }
 
-void Popplonode::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+NAN_METHOD(Popplonode::New) {
   if (info.IsConstructCall()) {
     Popplonode* obj = new Popplonode();
     obj->Wrap(info.This());
@@ -41,8 +45,7 @@ void Popplonode::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     info.GetReturnValue().Set(cons->NewInstance(argc, argv));
   }
 }
-
-void Popplonode::load(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+NAN_METHOD(Popplonode::load) {
   if (info.Length() < 1)
     return Nan::ThrowTypeError("Load requires at least 1 argument");
   Popplonode* popplonode = Nan::ObjectWrap::Unwrap<Popplonode>(info.Holder());
@@ -56,7 +59,7 @@ void Popplonode::load(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   }
 }
 
-void Popplonode::getMetadata(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+NAN_METHOD(Popplonode::getMetadata) {
   Popplonode* popplonode = Nan::ObjectWrap::Unwrap<Popplonode>(info.Holder());
   Local<Object> metadata = Nan::New<Object>();
   vector<string> infoKeys{popplonode->doc->info_keys()};
@@ -79,7 +82,7 @@ void Popplonode::getMetadata(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   info.GetReturnValue().Set(metadata);
 }
 
-void Popplonode::getTextFromPage(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+NAN_METHOD(Popplonode::getTextFromPage) {
   if (info.Length() < 2)
     return Nan::ThrowTypeError("Load requires at least 2 argument");
   double pageNumber = info[0]->NumberValue();
@@ -88,4 +91,6 @@ void Popplonode::getTextFromPage(const Nan::FunctionCallbackInfo<v8::Value>& inf
   Nan::AsyncQueueWorker(new GetTextFromPageAsync(callback, popplonode, pageNumber));
 }
 
-NODE_MODULE(popplonode, Popplonode::Init);
+void InitPopplonode(v8::Local<v8::Object> exports) { Popplonode::Init(exports); }
+
+NODE_MODULE(popplonode, InitPopplonode);

@@ -7,16 +7,16 @@
 
 class Popplonode : public Nan::ObjectWrap {
 public:
-  static void Init(v8::Local<v8::Object> exports);
+  static NAN_MODULE_INIT(Init);
   poppler::document* doc;
 
 private:
   explicit Popplonode(); 
   ~Popplonode();
-  static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
-  static void load(const Nan::FunctionCallbackInfo<v8::Value>& info);
-  static void getMetadata(const Nan::FunctionCallbackInfo<v8::Value>& info);
-  static void getTextFromPage(const Nan::FunctionCallbackInfo<v8::Value>& info);
+  static NAN_METHOD(New);
+  static NAN_METHOD(load);
+  static NAN_METHOD(getMetadata);
+  static NAN_METHOD(getTextFromPage);
   static inline Nan::Persistent<v8::Function>& constructor();
 };
 
