@@ -4,7 +4,7 @@
 Just a node module for poppler library
 
 ## Requirements
-This version has been tested only on Ubuntu 16.04
+This version has been tested only on Ubuntu 16.04 and 14.04
 
 **Debian/Ubuntu**
 ```shell
