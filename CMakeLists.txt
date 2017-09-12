@@ -9,7 +9,7 @@ ExternalProject_Add(
   poppler
   SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib/poppler
   PREFIX ${CMAKE_SOURCE_DIR}/lib/poppler
-  CONFIGURE_COMMAND ${CMAKE_SOURCE_DIR}/lib/poppler/configure --prefix=${CMAKE_SOURCE_DIR}/lib/poppler --enable-build-type=release --enable-libopenjpeg=none --disable-libnss --disable-libtiff --disable-libpng --disable-splash-output --disable-cairo-output --disable-poppler-glib --disable-poppler-qt4 --disable-poppler-qt5 --disable-gtk-test --disable-utils --enable-cms=none --enable-dctdecoder=none --disable-zlib
+  CONFIGURE_COMMAND autoreconf -f -i ${CMAKE_SOURCE_DIR}/lib/poppler && ${CMAKE_SOURCE_DIR}/lib/poppler/configure --prefix=${CMAKE_SOURCE_DIR}/lib/poppler --enable-build-type=release --enable-libopenjpeg=none --disable-libnss --disable-libtiff --disable-libpng --disable-splash-output --disable-cairo-output --disable-poppler-glib --disable-poppler-qt4 --disable-poppler-qt5 --disable-gtk-test --disable-utils --enable-cms=none --enable-dctdecoder=none --disable-zlib
   BUILD_COMMAND make
   BUILD_IN_SOURCE 1
 )
