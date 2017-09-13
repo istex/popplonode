@@ -1,6 +1,9 @@
 project(poppler)
-
+set(BUILD_SHARED_LIBS ON)
 cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
+
+#set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
+#set(CMAKE_CXX_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 
