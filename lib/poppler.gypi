@@ -3,9 +3,23 @@
     {
       "target_name": "libpoppler",
       "type": "static_library",
-      "cflags": [ "-w" ],
+      "cflags": [ "-w", "--without-libiconv-prefix" ],
       "defines": [
-        "BUILDING_POPPLER=1"
+        "BUILDING_POPPLER=1",
+        "ENABLE_XPDF_HEADERS=OFF",
+        "BUILD_GTK_TESTS=OFF",
+        "BUILD_QT5_TESTS=OFF",
+        "ENABLE_SPLASH=OFF",
+        "ENABLE_UTILS=OFF",
+        "ENABLE_LIBCURL=OFF",
+        "ENABLE_GLIB=OFF",
+        #"ENABLE_ZLIB=OFF",
+        #"ENABLE_ZLIB_UNCOMPRESS=OFF",
+        #"SPLASH_CMYK=OFF",
+        #"USE_FIXEDPOINT=OFF",
+       # "USE_FLOAT=OFF",
+        #"ENABLE_DCTDECODER=none",
+        #"ENABLE_LIBOPENJPEG=none"
       ],
       "sources": [
         # From PODOFO_BASE_SOURCES
