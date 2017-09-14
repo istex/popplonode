@@ -3,7 +3,7 @@
     {
       "target_name": "libpoppler",
       "type": "static_library",
-      "cflags": [ "-w", "--without-libiconv-prefix" ],
+      "cflags": [ "-w" ],
       "defines": [
         "BUILDING_POPPLER=1",
         "ENABLE_XPDF_HEADERS=OFF",
