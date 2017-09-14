@@ -16,8 +16,6 @@ before_install:
 - source ~/.nvm/nvm.sh
 - nvm install $NODE_VERSION
 - nvm use $NODE_VERSION
-- git submodule init
-- git submodule update
 # Upgrade npm
 # - npm install -g npm
 - npm install -g node-pre-gyp 
@@ -28,7 +26,7 @@ before_install:
 - git config --global user.name "MatthD"
 
 install:
-# - npm install --build-from-source
+- npm install --build-from-source
 - node-pre-gyp configure --enable-build-type=release --enable-libopenjpeg=none --disable-libnss --disable-libtiff --disable-libpng --disable-splash-output --disable-cairo-output --disable-poppler-glib --disable-poppler-qt4 --disable-poppler-qt5 --disable-gtk-test --disable-utils --enable-cms=none --enable-dctdecoder=none --disable-zlib
 - node-pre-gyp build
 - node-pre-gyp install
