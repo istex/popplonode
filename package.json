@@ -29,7 +29,7 @@
   ],
   "binary": {
     "module_name": "popplonode",
-    "module_path": "./build/Release/Release",
+    "module_path": "./build/Release/",
     "remote_path": "{version}",
     "host": "https://github.com/istex/popplonode/releases/download/"
   }
