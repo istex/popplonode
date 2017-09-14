@@ -145,7 +145,9 @@
           ],
           "xcode_settings": {
            "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
-           "GCC_ENABLE_CPP_RTTI": "YES"
+           "MACOSX_DEPLOYMENT_TARGET": "10.12",
+           "GCC_ENABLE_CPP_RTTI": "YES",
+           "CLANG_CXX_LANGUAGE_STANDARD": "c++11"
           }
         }]
       ],
