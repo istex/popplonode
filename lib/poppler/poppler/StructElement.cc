@@ -261,7 +261,7 @@ struct AttributeDefaults {
   Object Nat1 = Object(1);
 };
 
-static const AttributeDefaults attributeDefaults;
+static const AttributeDefaults attributeDefaults{};
 
 
 #define ATTR_LIST_END \

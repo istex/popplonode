@@ -1,14 +1,41 @@
-language: node_js
-node_js:
-  - "8"
-
+language: cpp
+ 
+os:
+- linux
+- osx
+ 
 env:
-  - CXX=g++-4.8
+  matrix:
+    - NODE_VERSION="8.4"
+    - NODE_VERSION="6.11"
+    - NODE_VERSION="4.4"
+ 
+before_install:
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install fontconfig ; fi
+- rm -rf ~/.nvm/ && git clone --depth 1 https://github.com/creationix/nvm.git ~/.nvm
+- source ~/.nvm/nvm.sh
+- nvm install $NODE_VERSION
+- nvm use $NODE_VERSION
+- git submodule init
+- git submodule update
+# Upgrade npm
+# - npm install -g npm
+- npm install -g node-pre-gyp 
+- npm install -g node-pre-gyp-github
+- git config --global credential.helper store
+- git config --global github.token $NODE_PRE_GYP_GITHUB_TOKEN
+- git config --global user.email "matthias.dieudonne@gmail.com"
+- git config --global user.name "MatthD"
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - cmake
-      - g++-4.8
+install:
+# - npm install --build-from-source
+- node-pre-gyp configure --enable-build-type=release --enable-libopenjpeg=none --disable-libnss --disable-libtiff --disable-libpng --disable-splash-output --disable-cairo-output --disable-poppler-glib --disable-poppler-qt4 --disable-poppler-qt5 --disable-gtk-test --disable-utils --enable-cms=none --enable-dctdecoder=none --disable-zlib
+- node-pre-gyp build
+- node-pre-gyp install
+- node-pre-gyp package
+
+script:
+- node-pre-gyp-github publish --release
+
+notifications:
+  email: false

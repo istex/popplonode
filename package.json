@@ -1,22 +1,37 @@
 {
   "name": "popplonode",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istex/popplonode.git"
+  },
   "author": "",
   "license": "MIT",
   "scripts": {
     "test": "mocha",
-    "install": "cmake-js compile",
+    "install": "node-pre-gyp install --fallback-to-build",
     "rebuild": "cmake-js rebuild"
   },
   "dependencies": {
     "bindings": "^1.3.0",
     "cmake-js": "^3.5.0",
-    "nan": "^2.6.2"
+    "nan": "^2.6.2",
+    "node-pre-gyp": "^0.6.37"
   },
   "devDependencies": {
     "chai": "^4.1.1",
     "mocha": "^3.5.0"
+  },
+  "gypfile": true,
+  "bundledDependencies": [
+    "node-pre-gyp"
+  ],
+  "binary": {
+    "module_name": "popplonode",
+    "module_path": "./build/Release/Release",
+    "remote_path": "{version}",
+    "host": "https://github.com/istex/popplonode/releases/download/"
   }
 }

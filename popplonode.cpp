@@ -8,7 +8,7 @@
 using namespace std;
 using namespace v8;
 
-Popplonode::Popplonode(bool debug = false) : _debug(debug) {
+Popplonode::Popplonode(bool debug) : _debug(debug) {
   poppler::set_debug_error_function([](const std::string& msg, void*) { return; }, nullptr);
 }
 Popplonode::~Popplonode() {}

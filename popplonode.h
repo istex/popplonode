@@ -12,7 +12,7 @@ public:
   poppler::document* doc;
 
 private:
-  explicit Popplonode(bool debug); 
+  explicit Popplonode(bool debug = false); 
   ~Popplonode();
   static inline Nan::Persistent<v8::Function>& constructor();
 
