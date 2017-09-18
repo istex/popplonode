@@ -63,3 +63,7 @@ returns:
 arguments : 
 - **number** page number (first page start at zero)
 - **function** callback who return page text
+
+
+#Windows
+If anyone could help us to build poppler on windows we could then build it for node.js :D
