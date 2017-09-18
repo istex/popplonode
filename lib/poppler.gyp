@@ -135,7 +135,7 @@
             "-fno-exceptions"
           ],
           "link_settings": {
-            "libraries": ["-liconv", "-lfont-config"],
+            "libraries": ["-liconv"],
           },
           "xcode_settings": {
            "OTHER_CPLUSPLUSFLAGS" : [ "-std=c++11", "-stdlib=libc++" ],
