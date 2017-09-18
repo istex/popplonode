@@ -13,7 +13,7 @@
         "-fpermissive",
       ],
       "dependencies": [
-        "lib/poppler.gypi:libpoppler"
+        "lib/poppler.gyp:libpoppler"
       ],
       "conditions": [
         ["OS=='win'", {
