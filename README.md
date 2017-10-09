@@ -1,22 +1,22 @@
-[![Build Status](https://travis-ci.org/istex/popplonode.svg?branch=master)](https://travis-ci.org/istex/popplonode)
-
-# popplonode
-Get the metadata & text extraction from a PDF file 
+# Popplonode
+Return metadata & text extraction of a PDF file 
 
 # Why Popplonode
-Popplonode is an [addons node.js](https://nodejs.org/api/addons.html) which means it use pure c++ code, it's clearly faster than [PDFJS](https://www.npmjs.com/package/pdfjs) & it's faster than a spawn of Poppler pdfinfo too!  because we only use specific functions of it.
+Popplonode is an [addons node.js](https://nodejs.org/api/addons.html) which means it use pure c++ code, it's clearly faster than [PDFJS](https://www.npmjs.com/package/pdfjs) & it's faster than a spawn of Poppler pdfinfo too!  because we only use specific c++ class of it.
 
 ## Requirements
-This version is working for NodeJs 8.4, 8.5, 6.1 & 4.8 (LTS) on Linux & OSX, a working for windows is in projess..
-
-**(FOR DEV only)**
-```shell
-sudo apt-get install cmake g++
-```
+This version is working for NodeJs 8.6, 8.4, 8.5, 6.1 & 4.8 (LTS) on Linux & OSX, a working for windows is in progress..
 
 ## Install
 ```shell
-npm install git+https://github.com/istex/popplonode.git[#<commit-ish> | #semver:<semver>]
+npm install popplonode
+```
+
+**INFO**
+If you want to use it with a particular version of node(eg: 8.5) you will need:
+```shell
+sudo apt-get install cmake g++
+brew install cmake
 ```
 
 ## Usage
