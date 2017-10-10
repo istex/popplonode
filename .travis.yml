@@ -15,6 +15,7 @@ env:
       osx_image: xcode8.3
  
 before_install:
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install fontconfig ; fi
 - rm -rf ~/.nvm/ && git clone --depth 1 https://github.com/creationix/nvm.git ~/.nvm
 - source ~/.nvm/nvm.sh
