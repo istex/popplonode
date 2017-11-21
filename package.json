@@ -1,9 +1,12 @@
 {
   "name": "popplonode",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "Popplonode can extract metadata & text from pdf files in a quick way",
   "main": "index.js",
-  "os" : [ "darwin", "linux" ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/istex/popplonode.git"
