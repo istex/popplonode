@@ -44,7 +44,7 @@ NAN_METHOD(Popplonode::New) {
     const int argc = 1;
     Local<Value> argv[argc] = {info[0]};
     Local<Function> cons = Nan::New(constructor());
-    info.GetReturnValue().Set(cons->NewInstance(argc, argv));
+    info.GetReturnValue().Set(Nan::NewInstance(cons, argc, argv).ToLocalChecked());
   }
 }
 NAN_METHOD(Popplonode::load) {
