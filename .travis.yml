@@ -9,7 +9,6 @@ env:
     - NODE_VERSION="10"
     - NODE_VERSION="8"
     - NODE_VERSION="6"
-    - NODE_VERSION="4"
   include:
     - os: osx
       osx_image: xcode8.3
