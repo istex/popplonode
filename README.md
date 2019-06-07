@@ -7,7 +7,7 @@ Return metadata & text extraction of a PDF file
 Popplonode is an [addons node.js](https://nodejs.org/api/addons.html) which means it use pure c++ code, it's clearly faster than [PDFJS](https://www.npmjs.com/package/pdfjs) & it's faster than a spawn of Poppler pdfinfo too!  because we only use specific c++ class of it.
 
 ## Requirements
-This version is working for NodeJs 8.6, 8.4, 8.5, 6.1 & 4.8 (LTS) on Linux & OSX, a working for windows is in progress..
+This version is working for Node.js v10, v8 & v6 (LTS) on Linux & OSX, a working for windows is in progress..
 
 ## Install
 ```shell
